@@ -12,7 +12,6 @@ public class MonitorView implements View<Car> {
         for (int n = 0; n < car.getPoisition(); n++) {
             view.append("-");
         }
-        view.append(System.lineSeparator());
         return view.toString();
     }
 }

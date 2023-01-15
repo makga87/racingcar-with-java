@@ -25,6 +25,7 @@ public class CarRace implements Race {
             View view = new MonitorView();
             String result = view.render(car);
             System.out.println(result);
+            System.out.println();
         });
     }
 }
