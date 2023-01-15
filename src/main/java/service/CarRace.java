@@ -4,6 +4,8 @@ import service.domain.RaceCondition;
 import view.MonitorView;
 import view.View;
 
+import java.util.Random;
+
 public class CarRace implements Race {
 
     private RaceCondition raceCondition;
@@ -15,7 +17,8 @@ public class CarRace implements Race {
     @Override
     public void race() {
         raceCondition.getCarList().forEach(car -> {
-            if (raceCondition.isAdvanceCondition()) car.move();
+            Random random = new Random();
+            if (raceCondition.isAdvanceCondition(random.nextInt(10))) car.move();
         });
     }
 

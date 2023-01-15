@@ -27,8 +27,7 @@ public class RaceCondition {
         return this.carList;
     }
 
-    public boolean isAdvanceCondition() {
-        Random random = new Random();
-        return random.nextInt(10) >= moveCondition;
+    public boolean isAdvanceCondition(int randmonValue) {
+        return randmonValue >= moveCondition;
     }
 }
