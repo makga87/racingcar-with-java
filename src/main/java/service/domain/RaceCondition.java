@@ -1,33 +1,37 @@
 package service.domain;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class RaceCondition {
 
-    private final ArrayList<Car> carList = new ArrayList<>();
-    private final int moveCondition;
+	private final ArrayList<Car> carList = new ArrayList<>();
+	private final int moveCondition;
 
-    public static RaceCondition of(int carCount, int moveCondition) {
-        return new RaceCondition(carCount, moveCondition);
-    }
+	public static RaceCondition of(int carCount, int moveCondition) {
+		isValidCarCount(carCount);
+		return new RaceCondition(carCount, moveCondition);
+	}
 
-    public RaceCondition(int carCount, int moveCondition) {
-        initCarList(carCount);
-        this.moveCondition = moveCondition;
-    }
+	public RaceCondition(int carCount, int moveCondition) {
+		initCarList(carCount);
+		this.moveCondition = moveCondition;
+	}
 
-    private void initCarList(int carCount) {
-        for (int count = 0; count < carCount; count++) {
-            carList.add(new Car("", 0));
-        }
-    }
+	private static void isValidCarCount(int carCount) {
+		if(carCount < 1) throw new IllegalArgumentException("자동차 갯수는 1대 이상이어야 합니다.");
+	}
 
-    public ArrayList<Car> getCarList() {
-        return this.carList;
-    }
+	private void initCarList(int carCount) {
+		for (int count = 0; count < carCount; count++) {
+			carList.add(new Car("", 0));
+		}
+	}
 
-    public boolean isAdvanceCondition(int randmonValue) {
-        return randmonValue >= moveCondition;
-    }
+	public ArrayList<Car> getCarList() {
+		return this.carList;
+	}
+
+	public boolean isAdvanceCondition(int randmonValue) {
+		return randmonValue >= moveCondition;
+	}
 }
