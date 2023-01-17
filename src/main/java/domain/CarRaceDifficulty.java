@@ -11,4 +11,8 @@ public enum CarRaceDifficulty {
     CarRaceDifficulty(int moveCondition) {
         this.moveCondition = moveCondition;
     }
+
+    public boolean isMoveOk(int randomValue) {
+        return this.moveCondition >= randomValue;
+    }
 }
