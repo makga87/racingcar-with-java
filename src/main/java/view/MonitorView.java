@@ -1,7 +1,7 @@
 package view;
 
 
-import service.domain.Car;
+import domain.vo.Car;
 
 public class MonitorView implements View<Car> {
 

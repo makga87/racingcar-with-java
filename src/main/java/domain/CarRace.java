@@ -1,6 +1,6 @@
-package service;
+package domain;
 
-import service.domain.RaceCondition;
+import domain.vo.RaceCondition;
 import view.MonitorView;
 import view.View;
 

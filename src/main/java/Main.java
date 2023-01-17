@@ -1,5 +1,5 @@
-import service.CarRace;
-import service.domain.RaceCondition;
+import domain.CarRace;
+import domain.vo.RaceCondition;
 
 import java.util.Scanner;
 

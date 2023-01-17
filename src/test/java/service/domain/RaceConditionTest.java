@@ -1,5 +1,6 @@
 package service.domain;
 
+import domain.vo.RaceCondition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
