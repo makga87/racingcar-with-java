@@ -1,33 +1,48 @@
 package domain;
 
-import domain.vo.RaceCondition;
-import view.MonitorView;
+import domain.vo.Car;
+import view.CarRaceResultView;
 import view.View;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
-public class CarRace implements Race {
+public class CarRace implements Race<Stream<Car>> {
 
-    private RaceCondition raceCondition;
+    private List<Car> cars = new ArrayList<>();
+    private final CarRaceDifficulty carRaceDifficulty;
 
-    public CarRace(RaceCondition raceCondition) {
-        this.raceCondition = raceCondition;
+    public static CarRace readyForRace(int carCount, CarRaceDifficulty carRaceDifficulty) {
+        List<Car> newCars = createNewRacingCar(carCount);
+        return new CarRace(newCars, carRaceDifficulty);
+    }
+
+    private CarRace(List<Car> cars, CarRaceDifficulty carRaceDifficulty) {
+        this.cars = cars;
+        this.carRaceDifficulty = carRaceDifficulty;
+    }
+
+    private static List<Car> createNewRacingCar(int carCount) {
+        List<Car> newCars = new ArrayList<>();
+        for (int cnt = 0; cnt < carCount; cnt++) {
+            newCars.add(new Car("", 0));
+        }
+        return newCars;
     }
 
     @Override
     public void race() {
-        raceCondition.getCarList().forEach(car -> {
+        cars.forEach(car -> {
             Random random = new Random();
-            if (raceCondition.isAdvanceCondition(random.nextInt(10))) car.move();
+            if (carRaceDifficulty.isMoveOk(random.nextInt(10))) car.move();
         });
     }
 
+
     @Override
-    public void monitor() {
-        raceCondition.getCarList().forEach(car -> {
-            View view = new MonitorView();
-            String result = view.render(car);
-            System.out.println(result);
-        });
+    public Stream<Car> getRaceResult() {
+        return cars.stream();
     }
 }
