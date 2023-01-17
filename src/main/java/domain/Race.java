@@ -1,19 +1,20 @@
 package domain;
 
-public interface Race {
+import java.util.HashMap;
+import java.util.Map;
+
+public interface Race<R> {
+
 
     default void start(int raceTryCount) {
-
-		if(raceTryCount < 1) throw new IllegalArgumentException("시도 횟수는 0이상이어야 합니다.");
-
-		for (int count = 1; count <= raceTryCount; count++) {
-            System.out.println("=======" + count + "회차 =======");
+        for (int count = 1; count <= raceTryCount; count++) {
             race();
-            monitor();
         }
     }
 
     void race();
 
-    void monitor();
+    R getRaceResult();
+
+
 }
