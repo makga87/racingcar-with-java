@@ -1,7 +1,7 @@
 package view;
 
-public interface View<M> {
+public interface View<R> {
 
-    String render(M model);
+    R render();
 
 }
