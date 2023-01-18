@@ -3,6 +3,8 @@ package view;
 
 import java.util.Scanner;
 
+import view.vo.RaceConditionInput;
+
 public class CarRaceStartView implements View<RaceConditionInput> {
 
     @Override
