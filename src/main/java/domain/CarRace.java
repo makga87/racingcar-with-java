@@ -1,14 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import domain.vo.Car;
+
+import java.util.*;
+import java.util.stream.Stream;
 
 public class CarRace implements Race<Stream<Car>> {
 

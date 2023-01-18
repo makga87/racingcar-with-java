@@ -22,11 +22,6 @@ public class Car {
         return this.poisition;
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
     public Car copy() {
         return new Car(this.carName, this.poisition);
     }

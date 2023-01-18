@@ -12,7 +12,7 @@ import view.vo.RaceConditionInput;
 
 public class CarRaceService {
 
-	public static void main(String[] args) throws CloneNotSupportedException {
+	public static void main(String[] args) {
 
 		CarRaceStartView carRaceStartView = new CarRaceStartView();
 		RaceConditionInput raceConditionInput = carRaceStartView.render();
