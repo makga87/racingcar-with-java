@@ -18,7 +18,7 @@ class CarRaceTest {
 		carRace.start(1);
 
 		Stream<Car> cars = carRace.getRaceStatus(1);
-		assertEquals(3, cars.toList().size());
+		assertEquals(3, cars.count());
 	}
 
 }
