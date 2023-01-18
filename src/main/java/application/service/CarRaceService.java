@@ -7,8 +7,8 @@ import domain.CarRaceDifficulty;
 import domain.vo.Car;
 import view.CarRaceResultView;
 import view.CarRaceStartView;
-import view.RaceConditionInput;
 import view.View;
+import view.vo.RaceConditionInput;
 
 public class CarRaceService {
 
@@ -26,7 +26,5 @@ public class CarRaceService {
 			View carRaceResultView = CarRaceResultView.of(cars, tryNo);
 			carRaceResultView.render();
 		}
-
-
 	}
 }
