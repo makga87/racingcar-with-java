@@ -10,7 +10,7 @@ class CarTest {
 	@DisplayName("자동차 이동 시, 포지션 변경을 확인한다")
 	@Test
 	void carMoveTest() {
-		Car car = new Car("", 0);
+		Car car = Car.of("", 0);
 		car.move();
 		assertEquals(1, car.getPoisition());
 
