@@ -1,33 +1,18 @@
 package view;
 
 
-import java.util.stream.Stream;
+import domain.vo.Cars;
 
-import domain.vo.Car;
+public class CarRaceResultView {
 
-public class CarRaceResultView implements View<String> {
-
-	private Stream<Car> cars;
-	private int tryNo;
-
-	public static CarRaceResultView of(Stream<Car> cars, int tryNo) {
-		return new CarRaceResultView(cars, tryNo);
-	}
-
-	private CarRaceResultView(Stream<Car> cars, int tryNo) {
-		this.cars = cars;
-		this.tryNo = tryNo;
-	}
-
-	@Override
-	public String render() {
+	public void printResult(int no, Cars cars) {
 		StringBuilder view = new StringBuilder();
-		view.append("======== ").append(tryNo).append("회차").append(" ========").append(System.lineSeparator());
-		cars.forEach(car -> {
+
+		view.append("======== ").append(no).append("회차").append(" ========").append(System.lineSeparator());
+		cars.stream().forEach(car -> {
 			view.append(convertPositionToView(car.getPoisition())).append(System.lineSeparator());
 		});
 		System.out.println(view);
-		return view.toString();
 	}
 
 	private String convertPositionToView(int position) {
