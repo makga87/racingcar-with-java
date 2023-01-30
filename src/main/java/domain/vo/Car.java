@@ -24,6 +24,9 @@ public class Car {
 	}
 
 	public void move(CarRaceDifficulty carRaceDifficulty, int randomValue) {
+		if (randomValue <= 0) {
+			throw new IllegalArgumentException("Bad random value input");
+		}
 		int moveCondition = carRaceDifficulty.getMoveCondition();
 		if (moveCondition <= randomValue) {
 			this.poisition++;
