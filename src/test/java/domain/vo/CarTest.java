@@ -15,7 +15,7 @@ import domain.CarRaceDifficulty;
 class CarTest {
 
 	@DisplayName("자동차 이동에 대한 랜덤 값이 0보다 작은 경우 예외를 발생시킨다")
-	@CsvSource({"0", "-1"})
+	@CsvSource({"-1"})
 	@ParameterizedTest
 	void carMoveErrorTest(int randomValue) {
 
@@ -46,6 +46,6 @@ class CarTest {
 			expected++;
 		}
 
-		assertEquals(expected, car.getPoisition());
+		assertEquals(expected, car.getPosition());
 	}
 }
