@@ -7,15 +7,15 @@ import domain.CarRaceDifficulty;
 public class Car {
 
 	private String carName;
-	private int poisition;
+	private int position;
 
-	public static Car of(String carName, int poisition) {
-		return new Car(carName, poisition);
+	private Car(String carName, int position) {
+		this.carName = carName;
+		this.position = position;
 	}
 
-	private Car(String carName, int poisition) {
-		this.carName = carName;
-		this.poisition = poisition;
+	public static Car of(String carName, int position) {
+		return new Car(carName, position);
 	}
 
 	public void move(CarRaceDifficulty carRaceDifficulty) {
@@ -24,16 +24,16 @@ public class Car {
 	}
 
 	public void move(CarRaceDifficulty carRaceDifficulty, int randomValue) {
-		if (randomValue <= 0) {
+		if (randomValue < 0) {
 			throw new IllegalArgumentException("Bad random value input");
 		}
 		int moveCondition = carRaceDifficulty.getMoveCondition();
 		if (moveCondition <= randomValue) {
-			this.poisition++;
+			this.position++;
 		}
 	}
 
-	public int getPoisition() {
-		return this.poisition;
+	public int getPosition() {
+		return this.position;
 	}
 }
