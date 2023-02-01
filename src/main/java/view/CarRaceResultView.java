@@ -10,7 +10,7 @@ public class CarRaceResultView {
 
 		view.append("======== ").append(no).append("회차").append(" ========").append(System.lineSeparator());
 		cars.stream().forEach(car -> {
-			view.append(convertPositionToView(car.getPoisition())).append(System.lineSeparator());
+			view.append(convertPositionToView(car.getPosition())).append(System.lineSeparator());
 		});
 		System.out.println(view);
 	}
