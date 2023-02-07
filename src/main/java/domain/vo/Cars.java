@@ -3,7 +3,7 @@ package domain.vo;
 import java.util.List;
 import java.util.stream.Stream;
 
-import domain.CarRaceDifficulty;
+import domain.strategy.MoveStrategy;
 
 public class Cars {
 
@@ -21,9 +21,9 @@ public class Cars {
 		return cars.stream();
 	}
 
-	public void move(CarRaceDifficulty carRaceDifficulty) {
+	public void move(MoveStrategy moveStrategy) {
 		for (Car car : cars) {
-			car.move(carRaceDifficulty);
+			car.move(moveStrategy);
 		}
 	}
 }

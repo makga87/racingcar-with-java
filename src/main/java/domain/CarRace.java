@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.strategy.CarMoveStrategy;
 import domain.vo.Car;
 import domain.vo.Cars;
 
@@ -31,7 +32,7 @@ public class CarRace {
 	}
 
 	public void race() {
-		cars.move(carRaceDifficulty);
+		cars.move(CarMoveStrategy.from(carRaceDifficulty));
 	}
 
 	public Cars getCars() {
