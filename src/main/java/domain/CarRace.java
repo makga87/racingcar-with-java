@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.strategy.CarMoveStrategy;
+import domain.strategy.WinnerStrategy;
 import domain.vo.Car;
 import domain.vo.Cars;
 
@@ -17,15 +18,16 @@ public class CarRace {
 		this.carRaceDifficulty = carRaceDifficulty;
 	}
 
-	public static CarRace readyForRace(int carCount, CarRaceDifficulty carRaceDifficulty) {
-		return new CarRace(createNewRacingCars(carCount), carRaceDifficulty);
+	public static CarRace readyForRace(String carNames, CarRaceDifficulty carRaceDifficulty) {
+		return new CarRace(createNewRacingCars(carNames), carRaceDifficulty);
 	}
 
-	private static Cars createNewRacingCars(int carCount) {
+	private static Cars createNewRacingCars(String carNames) {
+
 		List<Car> cars = new ArrayList<>();
 
-		for (int cnt = 0; cnt < carCount; cnt++) {
-			cars.add(Car.of("", 0));
+		for (String carName : carNames.split(",")) {
+			cars.add(Car.of(carName, 0));
 		}
 
 		return Cars.from(cars);
@@ -39,4 +41,7 @@ public class CarRace {
 		return this.cars;
 	}
 
+	public String getWinners(WinnerStrategy winnerStrategy) {
+		return winnerStrategy.winner();
+	}
 }
