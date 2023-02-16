@@ -12,6 +12,10 @@ public class Car {
 		this.position = position;
 	}
 
+	public static Car from(String carName) {
+		return of(carName, 0);
+	}
+
 	public static Car of(String carName, int position) {
 		validateCarName(carName);
 		return new Car(carName, position);
