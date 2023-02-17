@@ -2,32 +2,22 @@ package application.service;
 
 import domain.CarRace;
 import domain.CarRaceDifficulty;
-import domain.strategy.CarRaceWinnerStrategy;
-import view.CarRaceResultView;
-import view.CarRaceStartView;
-import view.vo.RaceConditionInput;
+import view.View;
+import view.vo.RaceCondition;
 
 public class CarRaceService {
 
 	public static void main(String[] args) {
 
-		CarRaceStartView carRaceStartView = new CarRaceStartView();
+		View view = View.start();
+		RaceCondition raceCondition = RaceCondition.from(view);
 
-		RaceConditionInput raceConditionInput = RaceConditionInput.of(carRaceStartView.inputCarName(), carRaceStartView.inputRaceTryCount());
+		CarRace race = CarRace.readyForRace(raceCondition, CarRaceDifficulty.NORMAL);
 
-		String carNames = raceConditionInput.getCarNames();
-		int tryCount = raceConditionInput.getTryCount();
-
-		CarRace race = CarRace.readyForRace(carNames, CarRaceDifficulty.NORMAL);
-
-		CarRaceResultView resultView = new CarRaceResultView();
-
-		for (int no = 1; no <= tryCount; no++) {
+		while (race.getNo() <= race.getTryCount()) {
 			race.race();
-			resultView.printRaceStatus(no, race.getCars());
+			View.print(race);
+			race.countNo();
 		}
-
-		resultView.printRaceWinner(race.getWinners(CarRaceWinnerStrategy.from(race.getCars())));
-
 	}
 }
