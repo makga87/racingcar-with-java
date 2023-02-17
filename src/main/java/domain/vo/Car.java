@@ -1,6 +1,7 @@
 package domain.vo;
 
 import domain.strategy.MoveStrategy;
+import utils.StringUtils;
 
 public class Car {
 
@@ -36,6 +37,11 @@ public class Car {
 	}
 
 	private static void validateCarName(String carName) {
+
+		if (StringUtils.isEmpty(carName)) {
+			throw new IllegalArgumentException("자동차 명이 입력 되지 않았습니다");
+		}
+
 		if (carName.length() > 5) {
 			throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없다.");
 		}
