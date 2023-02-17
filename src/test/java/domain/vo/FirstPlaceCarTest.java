@@ -1,6 +1,6 @@
 package domain.vo;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -20,7 +20,7 @@ class FirstPlaceCarTest {
 		FirstPlaceCar firstPlaceCar = FirstPlaceCar.init();
 		firstPlaceCar.changeFirstPlace(Car.of("pobi", 3));
 
-		Assertions.assertEquals(firstPlaceCar.isPass(position), expected);
+		assertEquals(firstPlaceCar.isPass(position), expected);
 	}
 
 	@DisplayName("자동차가 따라잡았는지 확인한다")
@@ -36,6 +36,6 @@ class FirstPlaceCarTest {
 		FirstPlaceCar firstPlaceCar = FirstPlaceCar.init();
 		firstPlaceCar.changeFirstPlace(Car.of("pobi", 3));
 
-		Assertions.assertEquals(firstPlaceCar.isOvertake(position), expected);
+		assertEquals(firstPlaceCar.isOvertake(position), expected);
 	}
 }

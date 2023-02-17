@@ -3,7 +3,7 @@ package domain.strategy;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,7 +25,7 @@ class CarRaceWinnerStrategyTest {
 
 		WinnerStrategy winnerStrategy = CarRaceWinnerStrategy.from(cars);
 
-		Assertions.assertEquals(expected, winnerStrategy.winner());
+		assertEquals(expected, winnerStrategy.winner());
 	}
 
 
