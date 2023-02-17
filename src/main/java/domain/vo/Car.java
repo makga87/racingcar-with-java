@@ -12,7 +12,12 @@ public class Car {
 		this.position = position;
 	}
 
+	public static Car from(String carName) {
+		return of(carName, 0);
+	}
+
 	public static Car of(String carName, int position) {
+		validateCarName(carName);
 		return new Car(carName, position);
 	}
 
@@ -24,5 +29,15 @@ public class Car {
 
 	public int getPosition() {
 		return this.position;
+	}
+
+	public String getCarName() {
+		return this.carName;
+	}
+
+	private static void validateCarName(String carName) {
+		if (carName.length() > 5) {
+			throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없다.");
+		}
 	}
 }
