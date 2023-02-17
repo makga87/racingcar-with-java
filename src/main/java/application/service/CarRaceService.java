@@ -1,30 +1,23 @@
 package application.service;
 
-import java.util.stream.Stream;
-
 import domain.CarRace;
 import domain.CarRaceDifficulty;
-import domain.vo.Car;
-import view.CarRaceResultView;
-import view.CarRaceStartView;
 import view.View;
-import view.vo.RaceConditionInput;
+import view.vo.RaceCondition;
 
 public class CarRaceService {
 
 	public static void main(String[] args) {
 
-		CarRaceStartView carRaceStartView = new CarRaceStartView();
-		RaceConditionInput raceConditionInput = carRaceStartView.render();
+		View view = View.start();
+		RaceCondition raceCondition = RaceCondition.from(view);
 
-		CarRace race = CarRace.readyForRace(raceConditionInput.getCarCount(), CarRaceDifficulty.NORMAL);
+		CarRace race = CarRace.readyForRace(raceCondition, CarRaceDifficulty.NORMAL);
 
-		race.start(raceConditionInput.getTryCount());
-
-		for (int tryNo = 1; tryNo <= raceConditionInput.getTryCount(); tryNo++) {
-			Stream<Car> cars = race.getRaceStatus(tryNo);
-			View carRaceResultView = CarRaceResultView.of(cars, tryNo);
-			carRaceResultView.render();
+		while (race.getNo() <= race.getTryCount()) {
+			race.race();
+			View.print(race);
+			race.countNo();
 		}
 	}
 }

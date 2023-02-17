@@ -1,56 +1,56 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.stream.Stream;
+import domain.strategy.CarMoveStrategy;
+import domain.strategy.WinnerStrategy;
+import domain.vo.Cars;
+import view.vo.RaceCondition;
 
-import domain.vo.Car;
+public class CarRace {
 
-public class CarRace implements Race<Stream<Car>> {
-
-	private List<Car> cars = new ArrayList<>();
+	private final int tryCount;
+	private int no = 1;
+	private Cars cars;
 	private final CarRaceDifficulty carRaceDifficulty;
-	private Map<Integer, Stream<Car>> carRaceStatus = new HashMap<>();
 
-	public static CarRace readyForRace(int carCount, CarRaceDifficulty carRaceDifficulty) {
-		List<Car> newCars = createNewRacingCar(carCount);
-		return new CarRace(newCars, carRaceDifficulty);
-	}
-
-	private CarRace(List<Car> cars, CarRaceDifficulty carRaceDifficulty) {
+	private CarRace(int tryCount, Cars cars, CarRaceDifficulty carRaceDifficulty) {
+		this.tryCount = tryCount;
 		this.cars = cars;
 		this.carRaceDifficulty = carRaceDifficulty;
 	}
 
-	private static List<Car> createNewRacingCar(int carCount) {
-		List<Car> newCars = new ArrayList<>();
-		for (int cnt = 0; cnt < carCount; cnt++) {
-			newCars.add(new Car("", 0));
-		}
-		return newCars;
+	public static CarRace readyForRace(RaceCondition raceCondition, CarRaceDifficulty carRaceDifficulty) {
+		return new CarRace(raceCondition.getTryCount(), createNewRacingCars(raceCondition.getCarNames()), carRaceDifficulty);
 	}
 
-	@Override
-	public void race(int tryNo) {
-		cars.forEach(car -> {
-			move(car);
-		});
-
-		carRaceStatus.put(tryNo, cars.stream());
+	private static Cars createNewRacingCars(String carNames) {
+		return Cars.from(carNames);
 	}
 
-	private void move(Car car) {
-		Random random = new Random();
-		if (carRaceDifficulty.isMoveOk(random.nextInt(10))) {
-			car.move();
-		}
+	public void race() {
+		cars.move(CarMoveStrategy.from(carRaceDifficulty));
 	}
 
-	@Override
-	public Stream<Car> getRaceStatus(int tryNo) {
-		return this.carRaceStatus.get(tryNo);
+	public Cars getCars() {
+		return this.cars;
+	}
+
+	public String getWinners(WinnerStrategy winnerStrategy) {
+		return winnerStrategy.winner();
+	}
+
+	public int getNo() {
+		return this.no;
+	}
+
+	public int getTryCount() {
+		return this.tryCount;
+	}
+
+	public void countNo() {
+		this.no++;
+	}
+
+	public boolean isEnd() {
+		return this.tryCount == this.no;
 	}
 }
