@@ -54,13 +54,13 @@ public class CarRaceWinnerStrategy implements WinnerStrategy {
 		sortedCars
 				.takeWhile(car -> car.getPosition() >= firstPlaceCar.getPosition())
 				.forEach(car -> {
-					if (firstPlaceCar.isOvertake(car.getPosition())) {
+					if (firstPlaceCar.isPass(car.getPosition())) {
 						winners.clear();
 						winners.add(car);
 						firstPlaceCar.changeFirstPlace(car);
 					}
 
-					if (firstPlaceCar.isCatchUpWith(car.getPosition()) && firstPlaceCar.isDifferentCar(car.getCarName())) {
+					if (firstPlaceCar.isOvertake(car.getPosition()) && firstPlaceCar.isDifferentCar(car.getCarName())) {
 						winners.add(car);
 					}
 				});

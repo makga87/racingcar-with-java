@@ -26,14 +26,14 @@ public class FirstPlaceCar {
 		return this.car.getPosition();
 	}
 
-	public boolean isOvertake(int carPosition) {
+	public boolean isPass(int carPosition) {
 		if (this.car == null) {
 			return true;
 		}
 		return this.car.getPosition() < carPosition;
 	}
 
-	public boolean isCatchUpWith(int carPosition) {
+	public boolean isOvertake(int carPosition) {
 		return this.car.getPosition() == carPosition;
 	}
 
