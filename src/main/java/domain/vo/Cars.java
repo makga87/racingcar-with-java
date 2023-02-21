@@ -37,7 +37,7 @@ public class Cars {
 
 	public void move(MoveStrategy moveStrategy) {
 		for (Car car : cars) {
-			car.move(moveStrategy);
+			car.move(moveStrategy.movable());
 		}
 	}
 

@@ -1,6 +1,5 @@
 package domain.vo;
 
-import domain.strategy.MoveStrategy;
 import utils.StringUtils;
 
 public class Car {
@@ -22,8 +21,8 @@ public class Car {
 		return new Car(carName, position);
 	}
 
-	public void move(MoveStrategy moveStrategy) {
-		if (moveStrategy.movable()) {
+	public void move(boolean movable) {
+		if (movable) {
 			this.position++;
 		}
 	}
