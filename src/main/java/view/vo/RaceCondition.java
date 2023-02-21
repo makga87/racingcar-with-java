@@ -1,6 +1,6 @@
 package view.vo;
 
-import view.View;
+import view.InputView;
 
 public class RaceCondition {
 
@@ -12,7 +12,7 @@ public class RaceCondition {
 		this.tryCount = tryCount;
 	}
 
-	public static RaceCondition from(View view) {
+	public static RaceCondition from(InputView view) {
 		validate(view.getCarNames(), view.getTryCount());
 		return new RaceCondition(view.getCarNames(), view.getTryCount());
 	}
