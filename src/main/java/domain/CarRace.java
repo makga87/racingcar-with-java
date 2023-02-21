@@ -19,11 +19,7 @@ public class CarRace {
 	}
 
 	public static CarRace readyForRace(RaceCondition raceCondition, CarRaceDifficulty carRaceDifficulty) {
-		return new CarRace(raceCondition.getTryCount(), createNewRacingCars(raceCondition.getCarNames()), carRaceDifficulty);
-	}
-
-	private static Cars createNewRacingCars(String carNames) {
-		return Cars.from(carNames);
+		return new CarRace(raceCondition.getTryCount(), Cars.from(raceCondition.getCarNames()), carRaceDifficulty);
 	}
 
 	public void race() {
