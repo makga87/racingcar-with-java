@@ -14,9 +14,6 @@ public class CarRaceWinnerStrategy implements WinnerStrategy {
 	private Cars cars;
 	private List<Car> winners = new ArrayList<>();
 
-	private CarRaceWinnerStrategy() {
-	}
-
 	private CarRaceWinnerStrategy(Cars cars) {
 		this.cars = cars;
 	}
