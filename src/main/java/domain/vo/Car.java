@@ -1,20 +1,28 @@
 package domain.vo;
 
+import domain.strategy.MoveStrategy;
+
 public class Car {
 
-    private String carName;
-    private int poisition;
+	private String carName;
+	private int position;
 
-    public Car(String carName, int poisition) {
-        this.carName = carName;
-        this.poisition = poisition;
-    }
+	private Car(String carName, int position) {
+		this.carName = carName;
+		this.position = position;
+	}
 
-    public void move() {
-        this.poisition++;
-    }
+	public static Car of(String carName, int position) {
+		return new Car(carName, position);
+	}
 
-    public int getPoisition() {
-        return this.poisition;
-    }
+	public void move(MoveStrategy moveStrategy) {
+		if (moveStrategy.movable()) {
+			this.position++;
+		}
+	}
+
+	public int getPosition() {
+		return this.position;
+	}
 }

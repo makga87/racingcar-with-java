@@ -3,21 +3,18 @@ package view;
 
 import java.util.Scanner;
 
-import view.vo.RaceConditionInput;
+public class CarRaceStartView {
 
-public class CarRaceStartView implements View<RaceConditionInput> {
+	private static Scanner input = new Scanner(System.in);
 
-    @Override
-    public RaceConditionInput render() {
+	public int inputCarCount() {
+		System.out.println("자동차 대수는 몇 대 인가요?");
+		return input.nextInt();
+	}
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("자동차 대수는 몇 대 인가요?");
+	public int inputRaceTryCount() {
+		System.out.println("시도할 회수는 몇 회 인가요?");
 
-        int carCount = input.nextInt();
-        System.out.println("시도할 회수는 몇 회 인가요?");
-
-        int tryCount = input.nextInt();
-
-        return RaceConditionInput.of(carCount, tryCount);
-    }
+		return input.nextInt();
+	}
 }

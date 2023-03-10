@@ -2,17 +2,23 @@ package domain;
 
 public enum CarRaceDifficulty {
 
-    EASY(1),
-    NORMAL(4),
-    HARD(7);
+	EASY(1, 9),
+	NORMAL(4, 9),
+	HARD(7, 10);
 
-    int moveCondition;
+	int moveCondition;
+	int randomRange;
 
-    CarRaceDifficulty(int moveCondition) {
-        this.moveCondition = moveCondition;
-    }
+	CarRaceDifficulty(int moveCondition, int randomRange) {
+		this.moveCondition = moveCondition;
+		this.randomRange = randomRange;
+	}
 
-    public boolean isMoveOk(int randomValue) {
-        return this.moveCondition >= randomValue;
-    }
+	public int getMoveCondition() {
+		return this.moveCondition;
+	}
+
+	public int getRandomRange() {
+		return this.randomRange;
+	}
 }
